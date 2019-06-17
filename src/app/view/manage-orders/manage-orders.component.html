@@ -1,0 +1,136 @@
+<!--<div class="container">-->
+
+  <div class="row ">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">( Select Customer )</h4>
+          <p class="card-category">Or Add New</p>
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <select class="bg-white custom-select" (change)="setCustomer($event); comboItem.focus()">
+                  <option>Select Customer</option>
+                  <option *ngFor="let customer of customers" >{{customer.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">Select Item</h4>
+          <p class="card-category">Or Add New</p>
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <!--<label class="bmd-label-floating">Item</label>-->
+                <select #comboItem class="bg-white custom-select" (change)="setItem($event); txtQty.focus()">
+                  <option>( Select Item )</option>
+                  <option *ngFor="let item of items" >{{item.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <input #txtQty placeholder="QTY" type="number" class="form-control" (keyup.enter)="txtPrice.focus()">
+                <label [innerText]="selectedItem?.qty"></label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <input #txtPrice placeholder="Unit Price" type="number"
+                       class="form-control" [value]="selectedItem?.price" (keyup.enter)="addOrderDetails(txtQty.value)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->
+
+<div class="row">
+  <div class="col-md-10">
+    <div class="card text-white">
+      <div class="card-header">
+        <h4 class="card-title"> Order Details Table</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter table-hover" id="orderTable">
+            <thead>
+              <tr>
+                <th>
+                  Customer
+                </th>
+                <th >
+                  Item
+                </th>
+                <th>
+                  QTY
+                </th>
+                <th >
+                  Total
+                </th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let od of orderDetails  ">
+                <td>{{selectedCustomer.name}}</td>
+                <td>{{od.name}}</td>
+                <td>{{od.qty}}</td>
+                <td>{{od.unitPrice}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="card">
+
+      <div class="card-body">
+        <button class="btn btn-warning" id="removeRowButton">Remove Row</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card card-profile">
+
+      <div class="card-body">
+        <h6 class="card-category" style="font-size: xx-large" [innerText]="total">Total</h6>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label id="totalLabel" class="bmd-label-floating" style="left: 5vw">0.0 /=</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <button class="btn" (click)="addOrder()">Add Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
