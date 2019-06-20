@@ -12,6 +12,7 @@ import { ManageOrdersComponent } from './view/manage-orders/manage-orders.compon
 import {DataTablesModule} from 'angular-datatables';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {MatOptionModule, MatSelectModule} from '@angular/material';
+import { ViewOrdersComponent } from './view/view-orders/view-orders.component';
 
 
 const routs: Routes = [
@@ -32,6 +33,10 @@ const routs: Routes = [
     component: ManageOrdersComponent
   },
   {
+    path: 'viewOrders',
+    component: ViewOrdersComponent
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'dashboard'
@@ -44,7 +49,8 @@ const routs: Routes = [
     ManageCustomersComponent,
     ManageItemsComponent,
     DashboardComponent,
-    ManageOrdersComponent
+    ManageOrdersComponent,
+    ViewOrdersComponent
   ],
   imports: [
     BrowserModule,
