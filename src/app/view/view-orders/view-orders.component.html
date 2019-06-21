@@ -22,12 +22,12 @@
         </tr>
         </thead>
         <tbody>
-        <!--<tr *ngFor="let customer of customers">-->
-          <!--<td>{{customer.cid}}</td>-->
-          <!--<td>{{customer.name}}</td>-->
-          <!--<td>{{customer.address}}</td>-->
-          <!--<td>{{customer.mobile}}</td>-->
-        <!--</tr>-->
+        <tr *ngFor="let order of ordersWithCust">
+          <td>{{order.oid}}</td>
+          <td>{{order.date}}</td>
+          <td>{{order.total}}</td>
+          <td>{{order.name}}</td>
+        </tr>
         </tbody>
       </table>
     </div>
