@@ -9,28 +9,61 @@
       </div>
     </div>
   </div>
-  <hr><hr>
+  <hr>
   <div class="row">
     <div class="col-md-10">
-      <table class="table table-hover">
-        <thead class="table-bordered">
-        <tr>
-          <td>OID</td>
-          <td>Date</td>
-          <td>Total</td>
-          <td>Customer</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let order of ordersWithCust">
-          <td>{{order.oid}}</td>
-          <td>{{order.date}}</td>
-          <td>{{order.total}}</td>
-          <td>{{order.name}}</td>
-        </tr>
-        </tbody>
-      </table>
+      <div >
+        <table class="table table-hover">
+          <thead class="table-bordered">
+          <tr>
+            <td>OID</td>
+            <td>Date</td>
+            <td>Total</td>
+            <td>Customer</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let order of ordersWithCust" (click)="getOrderDetails(order)">
+            <td>{{order.oid}}</td>
+            <td>{{order.date}}</td>
+            <td>{{order.total}}</td>
+            <td>{{order.name}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-
+<hr><hr>
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-10 ">
+        <h3 class="text-center">
+          Order Details
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div >
+        <table class="table table-hover">
+          <thead class="table-bordered">
+          <tr>
+            <td>Code</td>
+            <td>QTY</td>
+            <td>Unit Price</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let orderDetails of orderDetailsByOrder" >
+            <td>{{orderDetails.code}}</td>
+            <td>{{orderDetails.unitPrice}}</td>
+            <td>{{orderDetails.qty}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

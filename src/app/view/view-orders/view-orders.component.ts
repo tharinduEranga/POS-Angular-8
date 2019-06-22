@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderService} from '../../services/order_service';
 import {OrderDTO} from '../../dto/orderDTO';
+import {OrderDetailDTO} from '../../dto/orderDetailDTO';
 
 @Component({
   selector: 'app-view-orders',
@@ -9,6 +10,7 @@ import {OrderDTO} from '../../dto/orderDTO';
 })
 export class ViewOrdersComponent implements OnInit {
   private ordersWithCust: OrderDTO[] = [];
+  private orderDetailsByOrder: OrderDetailDTO[] = [];
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {
@@ -21,6 +23,13 @@ export class ViewOrdersComponent implements OnInit {
         orderDTO.setname(value.name);
         this.ordersWithCust.push(orderDTO);
       }
+    }, error => {
+      console.log(error);
+    });
+  }
+  getOrderDetails(order: OrderDTO) {
+    this.orderService.orderDetailsByOrder(order.oid).subscribe(value => {
+      this.orderDetailsByOrder = value;
     }, error => {
       console.log(error);
     });

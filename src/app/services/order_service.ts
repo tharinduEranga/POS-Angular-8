@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {apiurl, Operaions} from '../util/common';
 import {Observable} from 'rxjs';
 import {CustomerDTO} from '../dto/customerDTO';
 import {OrderDTO} from '../dto/orderDTO';
+import {OrderDetailDTO} from '../dto/orderDetailDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,13 @@ export class OrderService {
       operation: String(Operaions.getAllWithCusts)
     });
     return this.http.get<OrderDTO[]>(this.orderUrl, {headers: httpHeaders});
+  }
+  orderDetailsByOrder(oid: number): Observable<OrderDetailDTO[]> {
+    const httpHeaders = new HttpHeaders({
+      operation: String(Operaions.orderDetailsByOrder)
+    });
+    let httpParams = new HttpParams();
+    httpParams = httpParams.append('oid', String(oid));
+    return this.http.get<OrderDetailDTO[]>(this.orderUrl, {headers: httpHeaders, params: httpParams});
   }
 }
