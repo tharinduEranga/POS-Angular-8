@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { ManageCustomersComponent } from './view/manage-customers/manage-customers.component';
 import { ManageItemsComponent } from './view/manage-items/manage-items.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
-import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { ManageOrdersComponent } from './view/manage-orders/manage-orders.component';
@@ -13,35 +12,11 @@ import {DataTablesModule} from 'angular-datatables';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {MatOptionModule, MatSelectModule} from '@angular/material';
 import { ViewOrdersComponent } from './view/view-orders/view-orders.component';
+import {RouteModule} from './route.module';
+import { LoginComponent } from './view/login/login.component';
+import {CanActivateGuard} from './guard/can-activate.guard';
+import {CanActivate} from '@angular/router';
 
-
-const routs: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'customers',
-    component: ManageCustomersComponent
-  },
-  {
-    path: 'items',
-    component: ManageItemsComponent
-  },
-  {
-    path: 'orders',
-    component: ManageOrdersComponent
-  },
-  {
-    path: 'viewOrders',
-    component: ViewOrdersComponent
-  },
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'dashboard'
-  }
-];
 
 @NgModule({
   declarations: [
@@ -50,19 +25,20 @@ const routs: Routes = [
     ManageItemsComponent,
     DashboardComponent,
     ManageOrdersComponent,
-    ViewOrdersComponent
+    ViewOrdersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routs),
     HttpClientModule,
     FormsModule,
     DataTablesModule,
     NgxDatatableModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    RouteModule
   ],
-  providers: [],
+  providers: [CanActivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

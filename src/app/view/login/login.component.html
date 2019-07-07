@@ -1,0 +1,12 @@
+<div class="form-group">
+  <label>Username
+    <input type="text" class="form-control" #username>
+  </label>
+  <label>Password
+    <input type="password" class="form-control" #password>
+  </label>
+  <button class="btn btn-success" (click)="login(username.value, password.value)">Log in</button>
+  <div style="background-color: palevioletred" class="has-error" *ngIf="isIncorrect">
+    <h5 style="color: white">Incorrect credentials !</h5>
+  </div>
+</div>
