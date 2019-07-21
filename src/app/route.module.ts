@@ -8,6 +8,7 @@ import {ManageCustomersComponent} from './view/manage-customers/manage-customers
 import {DashboardComponent} from './view/dashboard/dashboard.component';
 import {LoginComponent} from './view/login/login.component';
 import {CanActivateGuard} from './guard/can-activate.guard';
+import {MaterialComponent} from './view/material/material.component';
 
 
 
@@ -35,6 +36,11 @@ const routs: Routes = [
   {
     path: 'viewOrders',
     component: ViewOrdersComponent,
+    canActivate: [CanActivateGuard]
+  },
+  {
+    path: 'material',
+    component: MaterialComponent,
     canActivate: [CanActivateGuard]
   },
   {

@@ -21,7 +21,6 @@ export class LoginService {
   }
   isLogged() {
     // return false;
-    console.log(localStorage.getItem('userData') != null);
     return localStorage.getItem('userData') != null ;
   }
 }
